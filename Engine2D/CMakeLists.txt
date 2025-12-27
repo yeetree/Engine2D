@@ -30,6 +30,26 @@ set(E2D_PRIVATE_INCLUDES
     ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/SDL/include
 )
 
+if(E2D_ENABLE_IMGUI)
+    list(APPEND E2D_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui_draw.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui_demo.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui_widgets.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/misc/cpp/imgui_stdlib.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/backends/imgui_impl_sdl3.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/backends/imgui_impl_opengl3.cpp
+    )
+
+    list(APPEND E2D_PUBLIC_INCLUDES
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui
+    )
+
+    list(APPEND E2D_PRIVATE_INCLUDES
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/backends   
+    )
+endif()
+
 # Build and link Engine2D
 add_library(Engine2D STATIC ${E2D_SOURCES})
 add_library(Engine2D::Engine2D ALIAS Engine2D)

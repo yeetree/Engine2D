@@ -3,6 +3,12 @@
 #include <glad/gl.h>
 #include <memory>
 
+#ifdef E2D_ENABLE_IMGUI
+    #include <imgui.h>
+    #include <backends/imgui_impl_sdl3.h>
+    #include <backends/imgui_impl_opengl3.h>
+#endif
+
 class SDL3Input : public Engine2D::Input {
 public:
     SDL3Input(Engine2D::Window* window) : m_Window(window), m_ShouldClose(false) {
@@ -18,6 +24,9 @@ public:
         
         while(SDL_PollEvent(&event))
         {
+#ifdef E2D_ENABLE_IMGUI
+            ImGui_ImplSDL3_ProcessEvent(&event);
+#endif
             switch(event.type)
             {
                 case SDL_EVENT_QUIT:

@@ -3,6 +3,12 @@
 #include <glad/gl.h>
 #include <memory>
 
+#ifdef E2D_ENABLE_IMGUI
+    #include <imgui.h>
+    #include <backends/imgui_impl_sdl3.h>
+    #include <backends/imgui_impl_opengl3.h>
+#endif
+
 class SDL3_OpenGLWindow : public Engine2D::Window {
 public:
     SDL3_OpenGLWindow(int width, int height, const std::string &title): m_Width(width), m_Height(height) {
@@ -55,9 +61,16 @@ public:
         SDL_GL_SetSwapInterval(1); // Enable vsync
 
         // Enable depth test
-        //glEnable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_TEST);
         glDisable(GL_CULL_FACE); // Ensure culling is OFF
         glFrontFace(GL_CCW);
+
+#ifdef E2D_ENABLE_IMGUI
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGui_ImplSDL3_InitForOpenGL(m_Window, m_GLContext);
+        ImGui_ImplOpenGL3_Init("#version 330");
+#endif
     }
 
     ~SDL3_OpenGLWindow() {

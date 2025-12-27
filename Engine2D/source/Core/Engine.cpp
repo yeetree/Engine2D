@@ -3,6 +3,12 @@
 #include "Engine2D/Core/FileSystem.h"
 #include "Engine2D/Core/Timer.h"
 
+#ifdef E2D_ENABLE_IMGUI
+    #include <imgui.h>
+    #include <backends/imgui_impl_sdl3.h>
+    #include <backends/imgui_impl_opengl3.h>
+#endif
+
 namespace Engine2D {
     Engine* Engine::s_Instance = nullptr;
 
@@ -30,11 +36,19 @@ namespace Engine2D {
                 m_Running = false;
 
             Update(dt);
+#ifdef E2D_ENABLE_IMGUI
+            ImGui_ImplOpenGL3_NewFrame();
+            ImGui_ImplSDL3_NewFrame();
+            ImGui::NewFrame();
+#endif
 
             m_RendererAPI->Clear();
 
             Render();
-            
+#ifdef E2D_ENABLE_IMGUI
+            ImGui::Render();
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+#endif
             m_Window->Swap();
         }
 
