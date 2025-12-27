@@ -38,14 +38,13 @@ public:
 
     void Update(float dt) override {
         et += 10.0f * dt;
-        cam.SetPosition(glm::vec2(sinf(et) * 100.0f, 0.0f));
     }
 
     void Render() override {
         Engine2D::Renderer2D::BeginScene(cam);
         Engine2D::Renderer2D::DrawMesh(*mesh, *shader, glm::vec2(100.0f, 100.0f), glm::vec2(100, 100));
         Engine2D::Renderer2D::SetDrawColor(Color(1.0, 1.0, 1.0, 1.0));
-        Engine2D::Renderer2D::DrawSprite(*texture, glm::vec2(400, 100), glm::vec2(100, 100), et * 0.5f);
+        Engine2D::Renderer2D::DrawSprite(*texture, glm::vec2(GetInput().GetMouseX(), GetInput().GetMouseY()), glm::vec2(100, 100));
         Engine2D::Renderer2D::SetDrawColor(Color(1.0, 0.0, 0.0, 1.0));
         Engine2D::Renderer2D::DrawFilledEllipse(glm::vec2(200, 200), 100, 50, 0);
     }
