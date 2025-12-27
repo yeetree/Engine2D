@@ -17,11 +17,6 @@ set(SDL_X11_XTEST OFF CACHE INTERNAL "")
 add_subdirectory(vendor/SDL)
 
 option(E2D_WITH_IMGUI "Enable ImGui support in Engine2D" ON)
-if(E2D_WITH_IMGUI)
-    add_subdirectory(vendor/imgui)
-    target_compile_definitions(Engine2D PUBLIC E2D_ENABLE_IMGUI)
-    target_link_libraries(Engine2D PRIVATE imgui::imgui)
-endif()
 
 # Engine2D library
 add_subdirectory(Engine2D)
