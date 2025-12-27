@@ -11,9 +11,11 @@
 
 class SDL3Input : public Engine2D::Input {
 public:
-    SDL3Input(Engine2D::Window* window) : m_Window(window), m_ShouldClose(false) {
+    SDL3Input(Engine2D::Window* window) : m_Window(window), m_ShouldClose(false), m_CurrentMouseX(0), m_CurrentMouseY(0), m_PreviousMouseX(0), m_PreviousMouseY(0) {
         memset(m_CurrentState, 0, sizeof(m_CurrentState));
         memset(m_PreviousState, 0, sizeof(m_PreviousState));
+        memset(m_CurrentMouseState, 0, sizeof(m_CurrentState));
+        memset(m_PreviousMouseState, 0, sizeof(m_PreviousMouseState));
     }
 
     ~SDL3Input() {
