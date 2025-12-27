@@ -13,6 +13,7 @@ add_subdirectory(vendor/glm)
 set(SDL_TEST_LIBRARY OFF CACHE INTERNAL "")
 set(SDL_TESTS OFF CACHE INTERNAL "")
 set(SDL_DISABLE_INSTALL ON CACHE INTERNAL "")
+set(SDL_X11_XTEST OFF CACHE INTERNAL "")
 add_subdirectory(vendor/SDL)
 
 option(E2D_WITH_IMGUI "Enable ImGui support in Engine2D" ON)
