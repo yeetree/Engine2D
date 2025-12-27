@@ -4,6 +4,7 @@
 #include "Engine2D/Core/Window.h"
 #include <memory>
 #include <cstdint>
+#include <glm/glm.hpp>
 
 namespace Engine2D {
 
@@ -53,21 +54,21 @@ namespace Engine2D {
         virtual bool ShouldClose() const = 0;
 
         virtual bool IsKeyDown(Scancode key) const = 0;
-
         virtual bool IsKeyPressed(Scancode key) const = 0;
-
         virtual bool IsKeyReleased(Scancode key) const = 0;
-
         virtual bool IsMouseButtonDown(MouseButton button) const = 0;
-
         virtual bool IsMouseButtonPressed(MouseButton button) const = 0;
-
         virtual bool IsMouseButtonReleased(MouseButton button) const = 0;
 
         virtual float GetMouseX() const = 0;
         virtual float GetMouseY() const = 0;
+        virtual glm::vec2 GetMouse() const = 0;
         virtual float GetMouseDeltaX() const = 0;
         virtual float GetMouseDeltaY() const = 0;
+        virtual glm::vec2 GetMouseDelta() const = 0;
+        virtual float GetMouseWheelX() const = 0;
+        virtual float GetMouseWheelY() const = 0;
+        virtual glm::vec2 GetMouseWheel() const = 0;
 
         static std::unique_ptr<Input> Create(Window* window);
     };

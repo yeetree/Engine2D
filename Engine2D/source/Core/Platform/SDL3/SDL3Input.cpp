@@ -11,7 +11,9 @@
 
 class SDL3Input : public Engine2D::Input {
 public:
-    SDL3Input(Engine2D::Window* window) : m_Window(window), m_ShouldClose(false), m_CurrentMouseX(0), m_CurrentMouseY(0), m_PreviousMouseX(0), m_PreviousMouseY(0) {
+    SDL3Input(Engine2D::Window* window) : m_Window(window), m_ShouldClose(false), 
+    m_CurrentMouseX(0), m_CurrentMouseY(0), m_PreviousMouseX(0), m_PreviousMouseY(0),
+    m_MouseWheelX(0), m_MouseWheelY(0) {
         memset(m_CurrentState, 0, sizeof(m_CurrentState));
         memset(m_PreviousState, 0, sizeof(m_PreviousState));
         memset(m_CurrentMouseState, 0, sizeof(m_CurrentMouseState));
@@ -28,6 +30,8 @@ public:
         memcpy(m_PreviousMouseState, m_CurrentMouseState, sizeof(m_CurrentMouseState));
         m_PreviousMouseX = m_CurrentMouseX;
         m_PreviousMouseY = m_CurrentMouseY;
+        m_MouseWheelX = 0;
+        m_MouseWheelY = 0;
 
         while(SDL_PollEvent(&event))
         {
@@ -51,6 +55,11 @@ public:
                     break;
                 case SDL_EVENT_MOUSE_BUTTON_UP:
                     m_CurrentMouseState[(uint8_t)SDLMouseButtonToEngine2D(event.button.button)] = false;
+                    break;
+                case SDL_EVENT_MOUSE_WHEEL:
+                    // This gets flipped if the user has mouse wheel inverted
+                    m_MouseWheelY = event.wheel.y;
+                    m_MouseWheelX = event.wheel.x;
                     break;
             }
         }
@@ -94,6 +103,10 @@ public:
         return m_CurrentMouseY;
     }
 
+    glm::vec2 GetMouse() const override {
+        return glm::vec2(m_CurrentMouseX, m_CurrentMouseY);
+    }
+
     float GetMouseDeltaX() const override {
         return m_CurrentMouseX - m_PreviousMouseX;
     }
@@ -102,9 +115,25 @@ public:
         return m_CurrentMouseY - m_PreviousMouseY;
     }
 
+    glm::vec2 GetMouseDelta() const override {
+        return glm::vec2(m_CurrentMouseX - m_PreviousMouseX, m_CurrentMouseY - m_PreviousMouseY);
+    }
+
+    float GetMouseWheelX() const override {
+        return m_MouseWheelX;
+    }
+
+    float GetMouseWheelY() const override {
+        return m_MouseWheelY;
+    }
+
+    glm::vec2 GetMouseWheel() const override {
+        return glm::vec2(m_MouseWheelX, m_MouseWheelY);
+    }
+
 private:
     // Technically unecessary, but this is to keep consistency if another backend is implemented
-    // as SDL_Scancodes are not 1 to 1 with Engine2D
+    // as SDL_Scancodes are not 1 to 1 with Engine2D (There are more SDL scancodes)
     Engine2D::Scancode SDLScancodeToEngine2D(SDL_Scancode scancode) {
         switch(scancode) {
             case SDL_SCANCODE_UNKNOWN:      return Engine2D::Scancode::KEY_UNKNOWN;
@@ -225,6 +254,7 @@ private:
     bool m_PreviousMouseState[6];
     float m_CurrentMouseX = 0, m_CurrentMouseY = 0;
     float m_PreviousMouseX = 0, m_PreviousMouseY = 0;
+    float m_MouseWheelX = 0, m_MouseWheelY = 0;
 };
 
 // Implementation of IInput::Init

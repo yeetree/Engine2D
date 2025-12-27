@@ -29,7 +29,7 @@ void Engine2D::Renderer2D::Init(RendererAPI* rendererAPI, Window* window) {
     s_PrimitiveMesh = Mesh::Create(vertices, indices, Engine2D::BufferUsage::STATIC, Engine2D::BufferUsage::STATIC);
 }
 
-void Engine2D::Renderer2D::BeginScene(const Camera& camera) {
+void Engine2D::Renderer2D::BeginScene(Camera& camera) {
     s_PrimitiveShader->Use();
     s_ViewProjection = camera.GetViewProjectionMatrix();
     s_PrimitiveShader->SetMat4("u_ViewProjection", s_ViewProjection);
@@ -82,6 +82,7 @@ void Engine2D::Renderer2D::DrawShape(glm::vec2 position, glm::vec2 size, int sha
     s_PrimitiveShader->SetFloat("thickness", thickness);
     s_PrimitiveShader->SetFloat("sizePixel", sizePixel);
     s_PrimitiveShader->SetInt("shapeType", shapeType);
+    s_PrimitiveShader->SetVec2("u_Dimensions", size);
 
     // Draw
     s_RendererAPI->DrawMesh(*s_PrimitiveMesh);

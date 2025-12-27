@@ -26,7 +26,7 @@ namespace Engine2D
     public:
         static void Init(RendererAPI* rendererAPI, Window* window);
         
-        static void BeginScene(const Camera& camera);
+        static void BeginScene(Camera& camera);
         static void SetDrawColor(Color color);
 
         static void DrawFilledRectangle(glm::vec2 position, glm::vec2 size, float rotation = 0);
