@@ -56,3 +56,7 @@ add_library(Engine2D::Engine2D ALIAS Engine2D)
 target_link_libraries(Engine2D PRIVATE OpenGL::GL SDL3::SDL3)
 target_include_directories(Engine2D PUBLIC ${E2D_PUBLIC_INCLUDES})
 target_include_directories(Engine2D PRIVATE ${E2D_PRIVATE_INCLUDES})
+
+if(E2D_ENABLE_IMGUI)
+    target_compile_definitions(Engine2D PUBLIC E2D_ENABLE_IMGUI)
+endif()
