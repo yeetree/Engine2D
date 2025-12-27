@@ -35,6 +35,7 @@ if(E2D_ENABLE_IMGUI)
         ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui_draw.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui_demo.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui_tables.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui_widgets.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/misc/cpp/imgui_stdlib.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/backends/imgui_impl_sdl3.cpp
@@ -43,10 +44,7 @@ if(E2D_ENABLE_IMGUI)
 
     list(APPEND E2D_PUBLIC_INCLUDES
         ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui
-    )
-
-    list(APPEND E2D_PRIVATE_INCLUDES
-        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/backends   
+        ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/backends  
     )
 endif()
 
