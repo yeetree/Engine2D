@@ -31,8 +31,6 @@ set(E2D_PRIVATE_INCLUDES
 )
 
 if(E2D_ENABLE_IMGUI)
-    target_compile_definitions(Engine2D PUBLIC E2D_ENABLE_IMGUI)
-
     list(APPEND E2D_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/../vendor/imgui/imgui_draw.cpp
