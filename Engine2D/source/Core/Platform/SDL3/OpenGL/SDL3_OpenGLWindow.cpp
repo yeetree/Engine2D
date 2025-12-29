@@ -62,7 +62,7 @@ public:
 
         // Enable depth test
         glEnable(GL_DEPTH_TEST);
-        glDisable(GL_CULL_FACE); // Ensure culling is OFF
+        glDisable(GL_CULL_FACE);
         glFrontFace(GL_CCW);
 
 #ifdef E2D_ENABLE_IMGUI

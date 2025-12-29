@@ -42,6 +42,8 @@ public:
         glEnableVertexAttribArray(2);
 
         glBindVertexArray(0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
     OpenGLMesh(const std::vector<float> &vertices, const std::vector<unsigned int> &indices, Engine2D::BufferUsage vertexUsage, Engine2D::BufferUsage indexUsage) : OpenGLMesh() {
@@ -76,12 +78,14 @@ public:
     void SetVertices(const std::vector<float> &data, Engine2D::BufferUsage usage) override {
         glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
         glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof(float), data.data(), GetBufferUsage(usage));
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 
     void SetIndices(const std::vector<unsigned int> &data, Engine2D::BufferUsage usage) override {
         m_IndexCount = (unsigned int)data.size();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ElementBuffer);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, data.size() * sizeof(unsigned int), data.data(), GetBufferUsage(usage));
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
 private:
