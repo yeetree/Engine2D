@@ -60,7 +60,7 @@ namespace Engine2D
 
     glm::vec2 Camera::ScreenToWorldDelta(const glm::vec2& screenDelta) const {
         float unitsPerPixel = (2.0f * k_CameraSize * m_Zoom) / m_ScreenHeight;
-        return screenDelta * unitsPerPixel;
+        return glm::vec2(screenDelta.x * unitsPerPixel, -screenDelta.y * unitsPerPixel);
     }
 
     glm::vec2 Camera::WorldToScreen(glm::vec2 worldPos) const {
@@ -92,8 +92,8 @@ namespace Engine2D
 
         float left   = -orthoSize * m_AspectRatio;
         float right  =  orthoSize * m_AspectRatio;
-        float bottom =  orthoSize;
-        float top    = -orthoSize;
+        float bottom =  -orthoSize;
+        float top    =  orthoSize;
 
         m_ProjectionMatrix = glm::ortho(left, right, bottom, top, -1.0f, 1.0f);
         m_Dirty = true;

@@ -3,7 +3,7 @@
 #include "Engine2D/Core/Log.h"
 #include "Engine2D/Renderer/Camera.h"
 
-Color Engine2D::Renderer2D::s_DrawColor;
+Engine2D::Color Engine2D::Renderer2D::s_DrawColor;
 Engine2D::RendererAPI* Engine2D::Renderer2D::s_RendererAPI;
 Engine2D::Window* Engine2D::Renderer2D::s_Window;
 std::shared_ptr<Engine2D::Mesh> Engine2D::Renderer2D::s_PrimitiveMesh;

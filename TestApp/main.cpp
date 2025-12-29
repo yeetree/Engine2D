@@ -55,19 +55,18 @@ public:
             camzoom *= zoom_speed;
         }
         cam.SetZoom(std::max(0.1f, camzoom));
-
     }
 
     void Render() override {
         Engine2D::Renderer2D::BeginScene(cam);
         Engine2D::Renderer2D::DrawMesh(*mesh, *shader, glm::vec2(1.0f, 1.0f), glm::vec2(1, 1));
-        Engine2D::Renderer2D::SetDrawColor(Color(1.0, 1.0, 1.0, 1.0));
+        Engine2D::Renderer2D::SetDrawColor(Engine2D::Color(1.0, 1.0, 1.0, 1.0));
         Engine2D::Renderer2D::DrawSprite(*texture, cam.ScreenToWorld(GetInput().GetMouse()), glm::vec2(1, 1));
-        Engine2D::Renderer2D::SetDrawColor(Color(1.0, 0.0, 0.0, 1.0));
+        Engine2D::Renderer2D::SetDrawColor(Engine2D::Color(1.0, 0.0, 0.0, 1.0));
         Engine2D::Renderer2D::DrawFilledEllipse(glm::vec2(200, 200), 100, 50, 0);
-        Engine2D::Renderer2D::SetDrawColor(Color(1.0, 1.0, 0.0, 1.0));
+        Engine2D::Renderer2D::SetDrawColor(Engine2D::Color(1.0, 1.0, 0.0, 1.0));
         Engine2D::Renderer2D::DrawOutlinedRectangle(glm::vec2(4, 6), glm::vec2(50, 6), 1.0f, 2.0f);
-        Engine2D::Renderer2D::SetDrawColor(Color(1.0, 0.0, 1.0, 1.0));
+        Engine2D::Renderer2D::SetDrawColor(Engine2D::Color(1.0, 0.0, 1.0, 1.0));
         Engine2D::Renderer2D::DrawOutlinedEllipse(glm::vec2(10, 2), 100, 20, 0.5, -1.0f);
     }
 };

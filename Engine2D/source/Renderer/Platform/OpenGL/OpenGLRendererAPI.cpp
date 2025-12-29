@@ -15,7 +15,7 @@ public:
         glViewport(position.x, position.y, size.x, size.y);
     }
 
-    void SetClearColor(Color color) override {
+    void SetClearColor(Engine2D::Color color) override {
         glClearColor(color.r, color.g, color.b, color.a);
     }
 

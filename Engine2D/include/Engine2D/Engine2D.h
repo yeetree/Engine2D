@@ -12,5 +12,6 @@
 #include "Engine2D/Core/AssetManager.h"
 #include "Engine2D/Core/FileSystem.h"
 #include "Engine2D/Core/Image.h"
+#include "Engine2D/Math/Color.h"
 
 #endif // INCLUDE_ENGINE2D_ENGINE2D

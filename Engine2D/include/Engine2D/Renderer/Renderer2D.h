@@ -1,7 +1,7 @@
 #ifndef INCLUDE_ENGINE2D_RENDERER_RENDERER2D
 #define INCLUDE_ENGINE2D_RENDERER_RENDERER2D
 
-#include "Engine2D/Types/Color.h"
+#include "Engine2D/Math/Color.h"
 #include "Engine2D/Core/Window.h"
 #include "Engine2D/Renderer/RendererAPI.h"
 #include "Engine2D/Renderer/Mesh.h"

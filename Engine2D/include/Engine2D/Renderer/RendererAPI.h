@@ -2,7 +2,7 @@
 #define SOURCE_RENDERER_RENDERERAPI
 
 #include <glm/glm.hpp>
-#include "Engine2D/Types/Color.h"
+#include "Engine2D/Math/Color.h"
 #include "Engine2D/Core/Window.h"
 #include "Engine2D/Renderer/Mesh.h"
 #include <memory>
